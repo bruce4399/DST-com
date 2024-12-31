@@ -1,0 +1,433 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #ff0000;
+    font-family: 'Microsoft YaHei', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 4em;
+    text-shadow: 0 0 10px #ff0000;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+#countdown {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.time-block {
+    background: rgba(255, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.time-block span {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.label {
+    display: block;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #ff0000;
+    }
+    to {
+        text-shadow: 0 0 20px #ff0000, 0 0 30px #ff4444;
+    }
+}
+
+/* 修改灯笼样式 */
+.lantern {
+    position: fixed;
+    width: 140px;
+    height: 200px;
+    z-index: 2;
+    top: 30px;
+}
+
+.left-lantern {
+    left: 50px;
+    animation: swingLeft 4s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+.right-lantern {
+    right: 50px;
+    animation: swingRight 4s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+.lantern-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: floatMove 6s ease-in-out infinite;
+}
+
+/* 修改灯笼顶部 */
+.lantern-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 25px;
+    background: #8B0000;
+    border: 3px solid #FFD700;
+    border-radius: 40% 40% 0 0;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+/* 修改灯笼主体 */
+.lantern-middle {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    background: linear-gradient(135deg, #cc0000 0%, #ff0000 50%, #cc0000 100%);
+    border-radius: 50px/70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    color: #FFD700;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    font-family: "STKaiti", "楷体", serif;
+    border: 3px solid #FFD700;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+/* 添加传统纹样 */
+.lantern-middle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 50% 20%, transparent 15%, rgba(255, 215, 0, 0.1) 16%, rgba(255, 215, 0, 0.1) 20%, transparent 21%),
+        radial-gradient(circle at 50% 50%, transparent 15%, rgba(255, 215, 0, 0.1) 16%, rgba(255, 215, 0, 0.1) 20%, transparent 21%),
+        radial-gradient(circle at 50% 80%, transparent 15%, rgba(255, 215, 0, 0.1) 16%, rgba(255, 215, 0, 0.1) 20%, transparent 21%),
+        linear-gradient(0deg, transparent 45%, rgba(255, 215, 0, 0.1) 46%, rgba(255, 215, 0, 0.1) 54%, transparent 55%);
+    background-size: 50px 120px, 50px 120px, 50px 120px, 20px 20px;
+    background-position: center;
+}
+
+/* 修改灯笼底部 */
+.lantern-bottom {
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background: #8B0000;
+    border: 3px solid #FFD700;
+    border-radius: 0 0 40% 40%;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+/* 修改流苏样式 */
+.tassel {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 120px;
+    height: 80px;
+}
+
+/* 创建多个流苏 */
+.tassel::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        #FFD700 0%,
+        #FFD700 40%,
+        rgba(255, 215, 0, 0.8) 60%,
+        rgba(255, 215, 0, 0.6) 80%,
+        rgba(255, 215, 0, 0.4) 100%
+    );
+    animation: longTasselWave 4s ease-in-out infinite;
+    box-shadow: 
+        -32px 0 0 0 #FFD700,
+        -16px 0 0 0 #FFD700,
+        16px 0 0 0 #FFD700,
+        32px 0 0 0 #FFD700;
+}
+
+/* 流苏末端装饰 */
+.tassel::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    height: 15px;
+    background: 
+        radial-gradient(circle at center, #FFD700 40%, transparent 40%) -32px 0,
+        radial-gradient(circle at center, #FFD700 40%, transparent 40%) -16px 0,
+        radial-gradient(circle at center, #FFD700 40%, transparent 40%) 0 0,
+        radial-gradient(circle at center, #FFD700 40%, transparent 40%) 16px 0,
+        radial-gradient(circle at center, #FFD700 40%, transparent 40%) 32px 0;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    animation: tasselBallWave 4s ease-in-out infinite;
+}
+
+/* 修改流苏摆动动画 */
+@keyframes longTasselWave {
+    0% {
+        transform: rotate(-8deg) skewX(5deg) scaleY(1.02);
+    }
+    25% {
+        transform: rotate(6deg) skewX(-4deg) scaleY(0.95);
+    }
+    50% {
+        transform: rotate(-5deg) skewX(3deg) scaleY(1.05);
+    }
+    75% {
+        transform: rotate(7deg) skewX(-5deg) scaleY(0.98);
+    }
+    100% {
+        transform: rotate(-8deg) skewX(5deg) scaleY(1.02);
+    }
+}
+
+/* 流苏末端装饰动画 */
+@keyframes tasselBallWave {
+    0% {
+        transform: translateX(-5px) rotate(-8deg);
+    }
+    25% {
+        transform: translateX(4px) rotate(6deg);
+    }
+    50% {
+        transform: translateX(-3px) rotate(-5deg);
+    }
+    75% {
+        transform: translateX(5px) rotate(7deg);
+    }
+    100% {
+        transform: translateX(-5px) rotate(-8deg);
+    }
+}
+
+/* 修改中国结样式 */
+.lantern-knot {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 50px;
+    background: #cc0000;
+    border: 3px solid #FFD700;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.lantern-knot::before,
+.lantern-knot::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    background: #cc0000;
+    border: 3px solid #FFD700;
+    border-radius: 10px;
+}
+
+.lantern-knot::before {
+    top: 8px;
+    left: -10px;
+    transform: rotate(-45deg);
+}
+
+.lantern-knot::after {
+    top: 8px;
+    right: -10px;
+    transform: rotate(45deg);
+}
+
+/* 调整移动设备上的响应式布局 */
+@media (max-width: 768px) {
+    .lantern {
+        width: 80px;
+        height: 120px;
+    }
+    
+    .left-lantern {
+        left: 10px;
+    }
+    
+    .right-lantern {
+        right: 10px;
+    }
+    
+    .lantern-middle {
+        font-size: 32px;
+        height: 80px;
+    }
+
+    .lantern-top {
+        width: 40px;
+        height: 15px;
+    }
+
+    .lantern-bottom {
+        width: 70px;
+        height: 15px;
+    }
+
+    .tassel {
+        height: 60px;
+        width: 90px;
+        gap: 6px;
+    }
+
+    .tassel::before {
+        width: 4px;
+        box-shadow: 
+            -24px 0 0 0 #FFD700,
+            -12px 0 0 0 #FFD700,
+            12px 0 0 0 #FFD700,
+            24px 0 0 0 #FFD700;
+    }
+
+    .tassel::after {
+        height: 10px;
+        background: 
+            radial-gradient(circle at center, #FFD700 40%, transparent 40%) -24px 0,
+            radial-gradient(circle at center, #FFD700 40%, transparent 40%) -12px 0,
+            radial-gradient(circle at center, #FFD700 40%, transparent 40%) 0 0,
+            radial-gradient(circle at center, #FFD700 40%, transparent 40%) 12px 0,
+            radial-gradient(circle at center, #FFD700 40%, transparent 40%) 24px 0;
+        background-size: 10px 10px;
+    }
+
+    .lantern-knot {
+        width: 30px;
+        height: 40px;
+        bottom: -50px;
+    }
+
+    .lantern-knot::before,
+    .lantern-knot::after {
+        width: 40px;
+        height: 15px;
+    }
+} 
+
+.volume-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.volume-control button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.volume-slider {
+    width: 100px;
+    margin-left: 10px;
+}
+
+.volume-slider input {
+    width: 100%;
+    cursor: pointer;
+} 
+
+/* 修改灯笼摆动动画 */
+@keyframes swingLeft {
+    0% {
+        transform: rotate(-8deg) translateY(0);
+    }
+    25% {
+        transform: rotate(3deg) translateY(-15px) skewX(-2deg);
+    }
+    50% {
+        transform: rotate(-5deg) translateY(0) skewX(1deg);
+    }
+    75% {
+        transform: rotate(6deg) translateY(-10px) skewX(-1deg);
+    }
+    100% {
+        transform: rotate(-8deg) translateY(0);
+    }
+}
+
+@keyframes swingRight {
+    0% {
+        transform: rotate(8deg) translateY(0);
+    }
+    25% {
+        transform: rotate(-3deg) translateY(-15px) skewX(2deg);
+    }
+    50% {
+        transform: rotate(5deg) translateY(0) skewX(-1deg);
+    }
+    75% {
+        transform: rotate(-6deg) translateY(-10px) skewX(1deg);
+    }
+    100% {
+        transform: rotate(8deg) translateY(0);
+    }
+}
+
+/* 添加灯笼整体的轻微上下浮动 */
+@keyframes floatMove {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+} 

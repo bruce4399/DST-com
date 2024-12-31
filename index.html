@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年快乐</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="firecracker" preload="auto">
+        <source src="sounds/firecracker.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="firework-launch" preload="auto">
+        <source src="sounds/launch.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="firework-explosion" preload="auto">
+        <source src="sounds/explosion.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="lantern left-lantern">
+        <div class="lantern-body">
+            <div class="tassel"></div>
+            <div class="lantern-top"></div>
+            <div class="lantern-middle">福</div>
+            <div class="lantern-bottom"></div>
+            <div class="lantern-knot"></div>
+        </div>
+    </div>
+    
+    <div class="lantern right-lantern">
+        <div class="lantern-body">
+            <div class="tassel"></div>
+            <div class="lantern-top"></div>
+            <div class="lantern-middle">禄</div>
+            <div class="lantern-bottom"></div>
+            <div class="lantern-knot"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>新年快乐</h1>
+        <div id="countdown">
+            <div class="time-block">
+                <span id="days">00</span>
+                <span class="label">天</span>
+            </div>
+            <div class="time-block">
+                <span id="hours">00</span>
+                <span class="label">时</span>
+            </div>
+            <div class="time-block">
+                <span id="minutes">00</span>
+                <span class="label">分</span>
+            </div>
+            <div class="time-block">
+                <span id="seconds">00</span>
+                <span class="label">秒</span>
+            </div>
+        </div>
+    </div>
+    <canvas id="fireworks"></canvas>
+    <script src="script.js"></script>
+</body>
+</html> 
